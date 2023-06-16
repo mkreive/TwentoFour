@@ -20,8 +20,21 @@ public class BankCustomer {
         return name;
     }
 
+    public String getCustomerId() {
+        return "%015d".formatted(customerId);
+    }
+
     public List<BankAccount> getAccounts() {
-        return new ArrayList<>(accounts);
+        return List.copyOf(accounts);
+    }
+
+    public BankAccount getAccount(BankAccount.Type type) {
+        for (var account: accounts) {
+            if(account.getType() == type) {
+                return account;
+            }
+        }
+        return null;
     }
 
     public void addAccount(BankAccount account) {
